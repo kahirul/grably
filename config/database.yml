@@ -83,6 +83,7 @@ test:
 #
 production:
   <<: *default
-  database: grably_production
-  username: grably
-  password: <%= ENV['GRABLY_DATABASE_PASSWORD'] %>
+  host: ec2-54-83-201-54.compute-1.amazonaws.com
+  database: d7da14kb904hgt
+  username: cogqyolfswpeof
+  password: cMldQYyAquEidUTFbKKy3hm7ur
