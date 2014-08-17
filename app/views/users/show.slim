@@ -1,0 +1,18 @@
+.container
+  .row
+    p
+      strong Name:
+      = @user.name
+    p
+      strong Username:
+      = @user.username
+    p
+      strong Email:
+      = @user.email
+    p
+      strong Role:
+      = @user.role
+
+    => link_to 'Edit', edit_user_path(@user)
+    '|
+    = link_to 'Users', users_path
