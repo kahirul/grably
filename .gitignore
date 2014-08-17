@@ -16,3 +16,5 @@
 /tmp
 /public/images/grabbed/*
 /public/uploads/shot/image/*
+/public/uploads/shot/image/*
+/public/uploads/tmp/*
