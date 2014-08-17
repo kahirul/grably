@@ -22,8 +22,15 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.0'
 gem 'authlogic'
+gem 'scrypt'
 gem 'phantomjs'
 gem 'simple_form', '~> 3.1.0.rc1', github: 'plataformatec/simple_form', branch: 'master'
+
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'delayed_job_active_record'
+gem 'delayed_job_web'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 # gem 'spring',        group: :development

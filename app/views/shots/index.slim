@@ -1,0 +1,21 @@
+.container
+  h1
+    => link_to current_user, current_user if current_user
+    'Shots
+
+  .row
+    - @shots.each do |shot|
+      .col-md-4.col-sm-6
+        = link_to shot do
+          = image_tag shot.image.url(:small), class: 'img-thumbnail'
+
+        .clearfix
+        br
+        p
+          => link_to 'destroy', shot, data: { confirm: 'Are you sure?' }, method: :delete
+          '&mdash;
+          em title="#{ shot.url }"
+            = shot.url.to_s.truncate 35
+
+        br
+        br

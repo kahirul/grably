@@ -1,18 +1,38 @@
 .container
   .row
-    p
-      strong Name:
-      = @user.name
-    p
-      strong Username:
-      = @user.username
-    p
-      strong Email:
-      = @user.email
-    p
-      strong Role:
-      = @user.role
+    .col-sm-3
+      = image_tag @user.avatar(:small), class: 'img-thumbnail'
 
-    => link_to 'Edit', edit_user_path(@user)
-    '|
-    = link_to 'Users', users_path
+      br
+      p
+        strong Name:
+        =< @user.name
+      p
+        strong Username:
+        =< @user.username
+      p
+        strong Email:
+        =< @user.email
+
+      p
+        = link_to 'Edit', edit_user_path(@user)
+
+    .col-sm-9
+      h2 Current Shots
+      .row
+        - current_user.shots.order(id: :desc).limit(6).each do |shot|
+          .col-md-4.col-sm-6
+            = link_to shot do
+              = image_tag shot.image.url(:small), class: 'img-thumbnail'
+
+            .clearfix
+            br
+            p
+              => link_to 'destroy', shot, data: { confirm: 'Are you sure?' }, method: :delete
+              '&mdash;
+              em title="#{ shot.url }"
+                = shot.url.to_s.truncate 35
+
+            br
+            br
+

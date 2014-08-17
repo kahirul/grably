@@ -1,0 +1,7 @@
+.container
+  h1 Grably Login
+
+  = simple_form_for @user_session, html: { class: 'form-horizontal' } do |f|
+    = f.input :username
+    = f.input :password
+    = f.button :submit, value: 'Log In'

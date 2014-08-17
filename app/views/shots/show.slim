@@ -1,0 +1,15 @@
+.container
+  h1
+    = link_to "#{ @shot.user.name }'s shots", shots_path
+
+  .row
+    .col-md-10.col-md-offset-2
+      br
+      = image_tag @shot.image.url, class: 'img-responsive'
+
+      br
+      p
+        => @shot.url || '#'
+        '&mdash;
+        = link_to "#{ @shot.user.name }'s shots", shots_path
+

@@ -1,5 +1,8 @@
 page = require('webpage').create()
-page.open 'https://github.com/', ->
-  page.render 'public/images/grabbed/github.png'
+url = phantom.args[0]
+id = phantom.args[1]
+
+page.open url, ->
+  page.render "public/images/grabbed/#{id}.png"
   phantom.exit()
   return

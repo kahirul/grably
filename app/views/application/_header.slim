@@ -1,2 +1,23 @@
-.container
-  h1 Grably
+.container-fluid.header
+  .row
+    .col-sm-3
+      h1
+        = link_to 'Grably', root_path
+
+    .col-sm-7
+      - if current_user
+        = simple_form_for :shot, url: shot_shots_path, wrapper: :inline_form, html: { class: 'form-inline header-shot-form' } do |f|
+          => f.input :url, input_html: { class: 'input-lg', value: nil }
+          = f.button :submit, value: 'Shot!', class: 'input-lg'
+
+    .col-sm-2
+      .header-user-menu
+      - if current_user
+        = link_to 'logout', logout_path
+      - else
+        => link_to 'login', login_path
+        '&middot;
+        = link_to 'register', register_path
+
+
+

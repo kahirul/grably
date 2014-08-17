@@ -1,8 +1,22 @@
 Rails.application.routes.draw do
 
+  match '/delayed_job' => DelayedJobWeb, anchor: false, via: [:get, :post]
+
   root 'pages#about'
+  get 'register' => 'users#new'
+  get 'login' => 'user_sessions#new'
+  get 'logout' => 'user_sessions#destroy'
 
   resources :users
+  resources :user_sessions, only: :create
+  resources :shots, only: [:index, :show, :destroy] do
+    collection do
+      post :shot
+    end
+  end
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
