@@ -1,9 +1,22 @@
 .container
   h1
-    = link_to "#{ @shot.user.name }'s shots", shots_path
+    - if can?(:edit, @shot)
+      = link_to 'My shots', shots_path
+    - else
+      = link_to "#{ @shot.user.name }'s shots", shots_path
 
   .row
     .col-md-10.col-md-offset-2
+      p
+        => @shot.url || '#'
+        '&mdash;
+        - if can?(:edit, @shot)
+          => link_to 'My shots', shots_path
+          '&middot;
+          = link_to 'share', shared_url(@shot)
+        - else
+          = link_to "#{ @shot.user.name }'s shots", user_path(@shot.user)
+
       br
       = image_tag @shot.image.url, class: 'img-responsive'
 
@@ -11,5 +24,10 @@
       p
         => @shot.url || '#'
         '&mdash;
-        = link_to "#{ @shot.user.name }'s shots", shots_path
+        - if can?(:edit, @shot)
+          => link_to 'My shots', shots_path
+          '&middot;
+          = link_to 'share', shared_url(@shot)
+        - else
+          = link_to "#{ @shot.user.name }'s shots", user_path(@shot.user)
 

@@ -1,0 +1,12 @@
+.container-fluid
+  h1
+    'Grably
+    br
+    small = @shot.url || '#'
+  .row
+    .col-md-12
+      = image_tag @shot.image.url, class: 'img-responsive'
+
+      br
+      p
+        => @shot.url || '#'

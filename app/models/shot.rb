@@ -11,4 +11,8 @@ class Shot < ActiveRecord::Base
     self.image = image
     self.save
   end
+
+  def to_param
+    "#{ id }-#{ url }".parameterize
+  end
 end

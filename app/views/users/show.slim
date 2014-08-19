@@ -14,13 +14,14 @@
         strong Email:
         =< @user.email
 
-      p
-        = link_to 'Edit', edit_user_path(@user)
+      - if can?(:edit, @user)
+        p
+          = link_to 'Edit', edit_user_path(@user)
 
     .col-sm-9
-      h2 Current Shots
+      h2 Latest Shots
       .row
-        - current_user.shots.order(id: :desc).limit(6).each do |shot|
+        - @user.shots.order(id: :desc).limit(6).each do |shot|
           .col-md-4.col-sm-6
             = link_to shot do
               = image_tag shot.image.url(:small), class: 'img-thumbnail'
@@ -28,8 +29,9 @@
             .clearfix
             br
             p
-              => link_to 'destroy', shot, data: { confirm: 'Are you sure?' }, method: :delete
-              '&mdash;
+              - if can?(:edit, shot)
+                => link_to 'destroy', shot, data: { confirm: 'Are you sure?' }, method: :delete
+                '&mdash;
               em title="#{ shot.url }"
                 = shot.url.to_s.truncate 35
 

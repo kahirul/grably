@@ -1,18 +1,24 @@
 .container-fluid.header
+  - flash.each do |type, message|
+    p class="#{ type }"
+      = message
+
   .row
     .col-sm-3
       h1
         = link_to 'Grably', root_path
 
-    .col-sm-7
+    .col-sm-6
       - if current_user
         = simple_form_for :shot, url: shot_shots_path, wrapper: :inline_form, html: { class: 'form-inline header-shot-form' } do |f|
           => f.input :url, input_html: { class: 'input-lg', value: nil }
           = f.button :submit, value: 'Shot!', class: 'input-lg'
 
-    .col-sm-2
+    .col-sm-3
       .header-user-menu
       - if current_user
+        => link_to current_user.name, user_path(current_user)
+        '&middot;
         = link_to 'logout', logout_path
       - else
         => link_to 'login', login_path

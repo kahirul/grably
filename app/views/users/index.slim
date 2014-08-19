@@ -7,9 +7,6 @@
         th Name
         th Username
         th Email
-        th Role
-        th
-        th
         th
 
     tbody
@@ -18,7 +15,9 @@
           td = link_to user, user
           td = user.username
           td = user.email
-          td = user.role
-          td = link_to 'Edit', edit_user_path(user)
-          td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
+          td
+            - if can?(:edit, user)
+              => link_to 'Edit', edit_user_path(user)
+              '&mdash;
+              = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
 

@@ -13,9 +13,15 @@
         br
         p
           => link_to 'destroy', shot, data: { confirm: 'Are you sure?' }, method: :delete
+          '&middot;
+          => link_to 'share', shared_url(shot)
           '&mdash;
           em title="#{ shot.url }"
             = shot.url.to_s.truncate 35
 
         br
         br
+
+  .row
+    = will_paginate @shots
+    br

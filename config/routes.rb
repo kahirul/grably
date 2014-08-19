@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'register' => 'users#new'
   get 'login' => 'user_sessions#new'
   get 'logout' => 'user_sessions#destroy'
+  get 'l/:id' => 'shots#shared', as: :shared
 
   resources :users
   resources :user_sessions, only: :create

@@ -1,9 +1,10 @@
 class ShotsController < ApplicationController
-  before_action :set_shot, only: [:show, :destroy]
+  load_and_authorize_resource except: :shared
+  before_action :set_shot, only: [:show, :destroy, :shared]
 
   # GET /shots
   def index
-    @shots = current_user.shots
+    @shots = current_user.shots.paginate(page: params[:page])
   end
 
   # GET /shots/1
@@ -17,6 +18,11 @@ class ShotsController < ApplicationController
     shot.grab
 
     redirect_to shots_url, notice: 'Shot was successfully put on queue'
+  end
+
+  def shared
+    # set_layout :simple
+    render layout: 'simple'
   end
 
   # DELETE /shots/1
