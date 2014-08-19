@@ -16,7 +16,9 @@
 
       - if can?(:edit, @user)
         p
-          = link_to 'Edit', edit_user_path(@user)
+          => link_to 'Manage', edit_user_path(@user)
+          '&middot;
+          =  link_to 'My Shots', shots_path(@user)
 
     .col-sm-9
       h2 Latest Shots
